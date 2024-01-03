@@ -7,20 +7,18 @@ var singleNumber = function (nums) {
   for (const num of nums) {
     counts[num] = counts[num] ? counts[num] + 1 : 1;
   }
-
-  // let limit = nums.length;
-  // let excluded = []
-  // for (let i = 0; i < limit; i++) {
-  //   let firstPart = nums.slice(0, i);
-  //   if (!nums.includes(nums[i], i + 1)) {
-  //     if (!firstPart.includes(nums[i])) {
-  //       return nums[i];
-  //     }
-  //   }
-  // }
+  return Object.keys(counts).find((key) => counts[key] === 1) * 1;
 };
 
-console.log(singleNumber([2, 2, 1]));
+console.log(singleNumber([2, 2, 1, 2, 1, 3]));
+
+// function getKeyByValue(object, value) {
+// 	return Object.keys(object).find(key =>
+// 		object[key] === value);
+// }
+
+// ans = getKeyByValue(exampleObject, 'Geeks');
+// console.log(ans);
 
 // Example 1:
 // Input: nums = [2,2,1]
