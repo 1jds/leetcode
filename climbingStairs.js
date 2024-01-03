@@ -69,7 +69,7 @@ function callOthers(arr2D) {
   return result;
 }
 
-let stepOne = climbStairs(7);
+let stepOne = climbStairs(5);
 let stepTwo = callOthers(stepOne);
 
 console.log("FINAL: .... \n", stepTwo, "\nLENGTH: .... \n", stepTwo.length);
