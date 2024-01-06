@@ -1,37 +1,39 @@
-// /**
-//  * @param {number[]} nums1
-//  * @param {number} m
-//  * @param {number[]} nums2
-//  * @param {number} n
-//  * @return {void} Do not return anything, modify nums1 in-place instead.
-//  */
+/**
+ * @param {number[]} nums1
+ * @param {number} m
+ * @param {number[]} nums2
+ * @param {number} n
+ * @return {void} Do not return anything, modify nums1 in-place instead.
+ */
+
+// Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+// [1,2,.2,3,5,6]
+// [~2,~5,~6]
 
 var merge = function (nums1, m, nums2, n) {
-  if (n == 0) {
-    return;
-  } else if (m == 0) {
-    for (let i = 0; i < n; i++) {
-      nums1[i] = nums2[i];
+  if (n === 0) {
+    return nums1;
+  } else if (m === 0) {
+    for (let q = 0; q < n; q++) {
+      nums1[q] = nums2[q];
     }
-    return;
   }
-  let temp = [];
-  let limit = m + n;
-  let j = 0;
-  let k = 0;
-  for (let i = 0; i < limit; i++) {
-    if (j < m && nums1[j] < nums2[k]) {
-      temp[i] = nums1[j];
-      if (j < m) {
-        j++;
-      }
+
+  let j = m - 1;
+  let k = n - 1;
+  for (let i = m + n - 1; i >= 0; i--) {
+    if (nums1[j] > nums2[k]) {
+      nums1[i] = nums1[j];
+      j--;
     } else {
-      temp[i] = nums2[k];
-      k++;
+      nums1[i] = nums2[k];
+      k--;
+    }
+    if (k < 0) {
+      break;
     }
   }
-  nums1 = [...temp];
   return nums1;
 };
 
-console.log(merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3)); // [1,2,2,3,5,6]
+console.log(merge([0], 0, [1], 1));
