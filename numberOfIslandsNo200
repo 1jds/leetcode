@@ -2,82 +2,66 @@
  * @param {character[][]} grid
  * @return {number}
  */
+
 var numIslands = function (grid) {
   let columnLength = grid.length;
   let rowLength = grid[0].length;
-  let sets = [];
+  let islandsFound = 0;
+
+  const breadCrumbs = (x, y) => {
+    let up = false;
+    let down = false;
+    let left = false;
+    let right = false;
+    if (grid[x] && grid[x][y] && grid[x][y] === "1") {
+      grid[x][y] = "0";
+    }
+
+    if (grid[x - 1] && grid[x - 1][y] && grid[x - 1][y] === "1") {
+      up = true;
+    }
+    if (grid[x + 1] && grid[x + 1][y] && grid[x + 1][y] === "1") {
+      down = true;
+    }
+    if (grid[x] && grid[x][y - 1] && grid[x][y - 1] === "1") {
+      left = true;
+    }
+    if (grid[x] && grid[x][y + 1] && grid[x][y + 1] === "1") {
+      right = true;
+    }
+
+    if (up) {
+      breadCrumbs(x - 1, y);
+    }
+    if (down) {
+      breadCrumbs(x + 1, y);
+    }
+    if (left) {
+      breadCrumbs(x, y - 1);
+    }
+    if (right) {
+      breadCrumbs(x, y + 1);
+    }
+    if (!up && !down && !left && !right) {
+      return;
+    }
+  };
+
   for (let i = 0; i < columnLength; i++) {
     for (let j = 0; j < rowLength; j++) {
       if (grid[i][j] === "1") {
-        if (sets.length === 0) {
-          sets[0] = [{ x: i, y: j }];
-        } else {
-          if (grid[i - 1] && grid[i - 1][j] && grid[i - 1][j] === "1") {
-            let length = sets.length;
-            for (let k = 0; k < length; k++) {
-              let itemLength = sets[k].length;
-              for (let m = 0; m < itemLength; m++) {
-                if (sets[k][m].x === i - 1 && sets[k][m].y === j) {
-                  sets[k].push({ x: i, y: j });
-                  break;
-                }
-              }
-            }
-          }
-          // if (grid[i + 1] && grid[i + 1][j] && grid[i + 1][j] === "1") {
-          //   let length = sets.length;
-          //   for (let k = 0; k < length; k++) {
-          //     let itemLength = sets[k].length;
-          //     for (let m = 0; m < itemLength; m++) {
-          //       if (sets[k][m].x === i + 1 && sets[k][m].y === j) {
-          //         sets[k].push({ x: i, y: j });
-          //         break;
-          //       }
-          //     }
-          //   }
-          // }
-          else if (grid[i] && grid[i][j - 1] && grid[i][j - 1] === "1") {
-            let length = sets.length;
-            for (let k = 0; k < length; k++) {
-              let itemLength = sets[k].length;
-              for (let m = 0; m < itemLength; m++) {
-                if (sets[k][m].x === i && sets[k][m].y === j - 1) {
-                  sets[k].push({ x: i, y: j });
-                  break;
-                }
-              }
-            }
-          } else {
-          }
-
-          // if (grid[i] && grid[i][j + 1] && grid[i][j + 1] === "1") {
-          //   let length = sets.length;
-          //   for (let k = 0; k < length; k++) {
-          //     let itemLength = sets[k].length;
-          //     for (let m = 0; m < itemLength; m++) {
-          //       if (sets[k][m].x === i && sets[k][m].y === j + 1) {
-          //         sets[k].push({ x: i, y: j });
-          //         break;
-          //       }
-          //     }
-          //   }
-          // }
-        }
+        console.log("Got here....");
+        islandsFound++;
+        breadCrumbs(i, j);
       }
     }
   }
-  console.log(sets);
-  return sets.length;
+
+  console.log(grid);
+  return islandsFound;
 };
 
-console.log(
-  numIslands([
-    ["1", "1", "0", "0", "0"],
-    ["1", "1", "0", "0", "0"],
-    ["0", "0", "1", "0", "0"],
-    ["0", "0", "0", "1", "1"],
-  ])
-);
+console.log(numIslands([["1", "0", "1", "1", "0", "1", "1"]]));
 
 // Example 1:
 // Input: grid = [
