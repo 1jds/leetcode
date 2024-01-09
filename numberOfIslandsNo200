@@ -9,42 +9,20 @@ var numIslands = function (grid) {
   let islandsFound = 0;
 
   const breadCrumbs = (x, y) => {
-    let up = false;
-    let down = false;
-    let left = false;
-    let right = false;
-    if (grid[x] && grid[x][y] && grid[x][y] === "1") {
-      grid[x][y] = "0";
-    }
-
-    if (grid[x - 1] && grid[x - 1][y] && grid[x - 1][y] === "1") {
-      up = true;
-    }
-    if (grid[x + 1] && grid[x + 1][y] && grid[x + 1][y] === "1") {
-      down = true;
-    }
-    if (grid[x] && grid[x][y - 1] && grid[x][y - 1] === "1") {
-      left = true;
-    }
-    if (grid[x] && grid[x][y + 1] && grid[x][y + 1] === "1") {
-      right = true;
-    }
-
-    if (up) {
-      breadCrumbs(x - 1, y);
-    }
-    if (down) {
-      breadCrumbs(x + 1, y);
-    }
-    if (left) {
-      breadCrumbs(x, y - 1);
-    }
-    if (right) {
-      breadCrumbs(x, y + 1);
-    }
-    if (!up && !down && !left && !right) {
+    if (
+      x < 0 ||
+      x >= columnLength ||
+      y < 0 ||
+      y >= rowLength ||
+      grid[x][y] === "0"
+    ) {
       return;
     }
+    grid[x][y] = "0";
+    breadCrumbs(x - 1, y);
+    breadCrumbs(x + 1, y);
+    breadCrumbs(x, y - 1);
+    breadCrumbs(x, y + 1);
   };
 
   for (let i = 0; i < columnLength; i++) {
