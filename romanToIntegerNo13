@@ -1,0 +1,41 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
+
+var romanToInt = function (s) {
+  let arr = s.split("");
+  return arr.reduce((cum, curr, index) => {
+    if (curr === "I") {
+      if (arr[index + 1] === "V" || arr[index + 1] === "X") {
+        return cum - 1;
+      }
+      return cum + 1;
+    } else if (curr === "V") {
+      return cum + 5;
+    } else if (curr === "X") {
+      if (arr[index + 1] === "L" || arr[index + 1] === "C") {
+        return cum - 10;
+      }
+      return cum + 10;
+    } else if (curr === "L") {
+      return cum + 50;
+    } else if (curr === "C") {
+      if (arr[index + 1] === "D" || arr[index + 1] === "M") {
+        return cum - 100;
+      }
+      return cum + 100;
+    } else if (curr === "D") {
+      return cum + 500;
+    }
+    return cum + 1000;
+  }, 0);
+};
+
+console.log(romanToInt("III"));
+console.log(romanToInt("LVIII"));
+console.log(romanToInt("MCMXCIV"));
+
+// Date: 14/01/2024
+// Runtime: 100ms - beats 86.35% of users with JavaScript
+// Memory: 46.83MB - beats 72.34% of users with JavaScript
