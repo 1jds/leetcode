@@ -1,0 +1,17 @@
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+
+var isPalindrome = function (x) {
+  console.log(x.split(""));
+  // if (x < 0) {
+  //   return false
+  // } else if () {
+
+  // }
+};
+
+console.log(isPalindrome(121));
+console.log(isPalindrome(-121));
+console.log(isPalindrome(10));
