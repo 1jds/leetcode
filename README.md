@@ -1,5 +1,7 @@
 # This Repo Contains Some Notes and Practice Solutions to Leet Code Questions
 
+For discussion of the fastest/top answers (by others, viewable on LeetCode upon successful completion of a challenge), see in this same repo 'topAnswers.md'. The below notes are primarily for my own independent notes on challenges.
+
 ## NOTES
 
 ### Problem 88. Merge Sorted Array
