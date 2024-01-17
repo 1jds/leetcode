@@ -39,3 +39,43 @@ var isPalindrome = function (x) {
   return sum == x;
 };
 ```
+
+## 69. Sqrt(x)
+
+This question was quite disappointing actually.
+
+The fastest answer (at 40ms) was this:
+
+```ts
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var mySqrt = function (x) {
+  return Math.floor(Math.sqrt(x));
+};
+```
+
+The second fastest answer (at 41ms) was this:
+
+```ts
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var mySqrt = function (x) {
+  return Math.floor(Math.sqrt(x));
+};
+```
+
+Yeah, so... spot the difference!
+
+This is somewhat disappointing, because it indicates that LeetCode's timings are not completely accurate.
+
+So... I copied and pasted the code and ran it myself. The time came back as 61ms! What the heck?
+
+Also, this is disappointing, because the question description mentions that one should not be using built-in features of the language, but this answer clearly does that. So... LeetCode is a little broken at this point.
+
+On the positive side, this seems like really good performance for the Math class function. Good job JavaScript!
+
+A final point of interest: we can replace `return Math.floor(Math.sqrt(x))` with `return ~~Math.sqrt(x)` as we learned with the top answer for No. 9.
