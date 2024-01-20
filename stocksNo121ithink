@@ -1,0 +1,21 @@
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function (prices) {
+  let maxPossProfit = 0;
+  let lengthOfArr = prices.length;
+  for (let i = 0; i < lengthOfArr; i++) {
+    for (let j = i + 1; j < lengthOfArr; j++) {
+      let currProfit = prices[j] - prices[i];
+      if (currProfit > maxPossProfit) {
+        maxPossProfit = currProfit;
+      }
+    }
+  }
+
+  return maxPossProfit;
+};
+
+console.log(maxProfit([7, 1, 4, 3, 6, 5]));
+console.log(maxProfit([9, 8, 7, 6, 5, 4]));
