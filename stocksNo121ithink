@@ -3,19 +3,20 @@
  * @return {number}
  */
 var maxProfit = function (prices) {
+  let minVal = Infinity;
   let maxPossProfit = 0;
   let lengthOfArr = prices.length;
   for (let i = 0; i < lengthOfArr; i++) {
-    for (let j = i + 1; j < lengthOfArr; j++) {
-      let currProfit = prices[j] - prices[i];
-      if (currProfit > maxPossProfit) {
-        maxPossProfit = currProfit;
-      }
+    if (prices[i] < minVal) {
+      minVal = prices[i];
+    }
+    let currProfit = prices[i] - minVal;
+    if (currProfit > maxPossProfit) {
+      maxPossProfit = currProfit;
     }
   }
-
   return maxPossProfit;
 };
 
 console.log(maxProfit([7, 1, 4, 3, 6, 5]));
-console.log(maxProfit([9, 8, 7, 6, 5, 4]));
+console.log(maxProfit([9, 8, 7, 6, 5, 4, 3, 2, 1]));
