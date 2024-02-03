@@ -2,4 +2,33 @@
  * @param {string[]} strs
  * @return {string}
  */
-var longestCommonPrefix = function (strs) {};
+var longestCommonPrefix = function (strs) {
+  if (strs[0] === "") {
+    return "";
+  }
+  if (strs.length === 1) {
+    return strs[0];
+  }
+  const firstWord = strs[0];
+  const firstWordLen = firstWord.length;
+  const remainder = strs.slice(1);
+  const remainderLen = remainder.length;
+  let prefix = "";
+  for (let i = 0; i < firstWordLen; i++) {
+    for (let j = 0; j < remainderLen; j++) {
+      if (firstWord[i] !== remainder[j][i]) {
+        return prefix;
+      }
+    }
+    prefix = prefix + firstWord[i];
+  }
+  return prefix;
+};
+
+console.log("TEST 1. ", longestCommonPrefix(["flower", "flow", "flight"])); // "fl"
+console.log("TEST 2. ", longestCommonPrefix(["dog", "racecar", "car"])); // ""
+console.log("TEST 3. ", longestCommonPrefix([""])); // ""
+console.log(
+  "TEST 4. ",
+  longestCommonPrefix(["flower", "flower", "flower", "flower"])
+); // ""
