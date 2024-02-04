@@ -1,0 +1,42 @@
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isNumber = function (s) {
+  const customRegex = /^[+\-]?(\.\d+|\d+(\.\d*)?)([eE][+\-]?\d+)?$/;
+  return customRegex.test(s);
+};
+
+let tests = [
+  "2",
+  "0089",
+  "-0.1",
+  "+3.14",
+  "4.",
+  "-.9",
+  "2e10",
+  "-90E3",
+  "3e+7",
+  "+6e-1",
+  "53.5e93",
+  "-123.456e789",
+];
+let falseTests = [
+  "abc",
+  "1a",
+  "1e",
+  "e3",
+  "99e2.5",
+  "--6",
+  "-+3",
+  "95a54e53",
+  "blahblah",
+  "beez",
+  "e532",
+  ".0e-1.2",
+];
+
+for (let q = 0; q < 12; q++) {
+  console.log("SHOULD BE TRUE... : ", isNumber(tests[q]));
+  console.log("SHOULD BE FALSE... : ", isNumber(falseTests[q]));
+}
