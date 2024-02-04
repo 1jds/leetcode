@@ -2,7 +2,15 @@
  * @param {string} s
  * @return {number}
  */
-var myAtoi = function(s) {
-    
+var myAtoi = function (s) {
+  let trimmed = s.trim();
+  let myRegex = /^[+\-]?\d+/;
+  let found = trimmed.match(myRegex);
+  let result = found * 1;
+  if (found > 2147483647) {
+    return 2147483647;
+  } else if (found < -2147483648) {
+    return -2147483648;
+  }
+  return result;
 };
-
